@@ -1,4 +1,5 @@
 ﻿using AdventOfCode.Base;
+using System;
 using System.Collections.Generic;
 
 namespace AdventOfCode.Day6
@@ -14,7 +15,7 @@ namespace AdventOfCode.Day6
 
             for (var index = 0; index < inputLines.Length; index++)
             {
-                if (inputLines[index].Length == 0)
+                if (inputLines[index].Length == 0 || inputLines[index] == "\r" || inputLines[index] == Environment.NewLine)
                 {
                     inputModels.Add(CreateModel(currentGroupLines.ToArray()));
                     currentGroupLines.Clear();
@@ -92,7 +93,8 @@ namespace AdventOfCode.Day6
 
             foreach (var character in line)
             {
-                dictionaryYesPerCharacter[character] = true;
+                if (character.ToString() != Environment.NewLine && character.ToString() != "\r")
+                    dictionaryYesPerCharacter[character] = true;
             }
 
             return dictionaryYesPerCharacter;
