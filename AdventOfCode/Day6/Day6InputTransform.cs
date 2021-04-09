@@ -38,7 +38,9 @@ namespace AdventOfCode.Day6
             var totalYesQuestionsPerGroup = new Dictionary<char, bool>();
 
             for (char character = 'a'; character <= 'z'; character++)
+            {
                 totalYesQuestionsPerGroup.Add(character, false);
+            }
 
             for (var index = 0; index < lines.Length; index++)
             {
@@ -46,8 +48,11 @@ namespace AdventOfCode.Day6
                 yesQuestionsPerPerson.Add(index, yesQuestionsPerCharacterDict);
 
                 foreach (var (key, value) in yesQuestionsPerCharacterDict)
-                    totalYesQuestionsPerGroup[key] = totalYesQuestionsPerGroup[key]
-                        || yesQuestionsPerCharacterDict[key];
+                    if (!totalYesQuestionsPerGroup.ContainsKey(key))
+                        throw new System.Exception(key.ToString());
+                    else
+                        totalYesQuestionsPerGroup[key] = totalYesQuestionsPerGroup[key]
+                            || yesQuestionsPerCharacterDict[key];
             }
 
             return new Day6InputModel(yesQuestionsPerPerson, totalYesQuestionsPerGroup);
