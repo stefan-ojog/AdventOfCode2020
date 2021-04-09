@@ -48,11 +48,9 @@ namespace AdventOfCode.Day6
                 yesQuestionsPerPerson.Add(index, yesQuestionsPerCharacterDict);
 
                 foreach (var (key, value) in yesQuestionsPerCharacterDict)
-                    if (!totalYesQuestionsPerGroup.ContainsKey(key))
-                        throw new System.Exception(key.ToString());
-                    else
+                    if (totalYesQuestionsPerGroup.ContainsKey(key))
                         totalYesQuestionsPerGroup[key] = totalYesQuestionsPerGroup[key]
-                            || yesQuestionsPerCharacterDict[key];
+                             || yesQuestionsPerCharacterDict[key];
             }
 
             return new Day6InputModel(yesQuestionsPerPerson, totalYesQuestionsPerGroup);
