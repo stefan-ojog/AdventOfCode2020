@@ -8,57 +8,57 @@ using System.Text.RegularExpressions;
 
 namespace AdventOfCode
 {
-	public class Bootstrapper
-	{
-		public IContainer Build()
-		{
-			var builder = new ContainerBuilder();
-			builder.RegisterType<InputReaderWrapper>().As<IInputReader>().SingleInstance();
-			builder.RegisterType<ProcessorFactory>().As<IProcessorFactory>().SingleInstance();
+    public class Bootstrapper
+    {
+        public IContainer Build()
+        {
+            var builder = new ContainerBuilder();
+            builder.RegisterType<InputReaderWrapper>().As<IInputReader>().SingleInstance();
+            builder.RegisterType<ProcessorFactory>().As<IProcessorFactory>().SingleInstance();
 
-			RegisterInputTransformTypes(builder);
-			RegisterProcessorTypes(builder);
+            RegisterInputTransformTypes(builder);
+            RegisterProcessorTypes(builder);
 
-			return builder.Build();
-		}
+            return builder.Build();
+        }
 
-		private void RegisterInputTransformTypes(ContainerBuilder containerBuilder)
-		{
-			var inputTransformTypes = GetTypesWithInterface(typeof(IInputTransform));
-			foreach (var inputTransformType in inputTransformTypes)
-				containerBuilder.RegisterType(inputTransformType).SingleInstance();
-		}
+        private void RegisterInputTransformTypes(ContainerBuilder containerBuilder)
+        {
+            var inputTransformTypes = GetTypesWithInterface(typeof(IInputTransform));
+            foreach (var inputTransformType in inputTransformTypes)
+                containerBuilder.RegisterType(inputTransformType).SingleInstance();
+        }
 
-		private void RegisterProcessorTypes(ContainerBuilder containerBuilder)
-		{
-			var processorTypes = GetTypesWithInterface(typeof(IProcessor));
+        private void RegisterProcessorTypes(ContainerBuilder containerBuilder)
+        {
+            var processorTypes = GetTypesWithInterface(typeof(IProcessor));
 
-			foreach (var processorType in processorTypes)
-				containerBuilder.RegisterType(processorType)
-					.WithParameter("inputResourceName", GetInputResourceNameFromType(processorType))
-					.AsSelf()
-					.As<IProcessor>()
-					.SingleInstance();
-		}
+            foreach (var processorType in processorTypes)
+                containerBuilder.RegisterType(processorType)
+                    .WithParameter("inputResourceName", GetInputResourceNameFromType(processorType))
+                    .AsSelf()
+                    .As<IProcessor>()
+                    .SingleInstance();
+        }
 
-		private string GetInputResourceNameFromType(Type type)
-		{
-			var namePreffix = "AdventOfCode.Input";
-			var regexString = @"Day\d+";
+        private string GetInputResourceNameFromType(Type type)
+        {
+            var namePreffix = "AdventOfCode.Input";
+            var regexString = @"Day\d+";
 
-			var regex = new Regex(regexString);
-			var match = regex.Match(type.Name);
+            var regex = new Regex(regexString);
+            var match = regex.Match(type.Name);
 
-			var resourceName = $"{namePreffix}.{match.Value}.txt";
+            var resourceName = $"{namePreffix}.{match.Value}.txt";
 
-			return resourceName;
-		}
+            return resourceName;
+        }
 
-		private IEnumerable<Type> GetTypesWithInterface(Type interfaceType)
-		{
-			var currentAssembly = Assembly.GetExecutingAssembly();
+        private IEnumerable<Type> GetTypesWithInterface(Type interfaceType)
+        {
+            var currentAssembly = Assembly.GetExecutingAssembly();
 
-			return currentAssembly.GetLoadableTypes().Where(t => interfaceType.IsAssignableFrom(t) && !t.IsInterface && !t.IsAbstract).ToList();
-		}
-	}
+            return currentAssembly.GetLoadableTypes().Where(t => interfaceType.IsAssignableFrom(t) && !t.IsInterface && !t.IsAbstract).ToList();
+        }
+    }
 }

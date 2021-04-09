@@ -7,22 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Input\Day1.txt" />
-    <None Remove="Input\Day10.txt" />
-    <None Remove="Input\Day11.txt" />
-    <None Remove="Input\Day12.txt" />
-    <None Remove="Input\Day13.txt" />
-    <None Remove="Input\Day14.txt" />
-    <None Remove="Input\Day15.txt" />
-    <None Remove="Input\Day16.txt" />
-    <None Remove="Input\Day2.txt" />
-    <None Remove="Input\Day3.txt" />
-    <None Remove="Input\Day4.txt" />
-    <None Remove="Input\Day5.txt" />
-    <None Remove="Input\Day6.txt" />
-    <None Remove="Input\Day7.txt" />
-    <None Remove="Input\Day8.txt" />
-    <None Remove="Input\Day9.txt" />
     <None Remove="Output\Day10Part1.txt" />
     <None Remove="Output\Day10Part2.txt" />
     <None Remove="Output\Day11Part1.txt" />
@@ -58,22 +42,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Input\Day1.txt" />
-    <EmbeddedResource Include="Input\Day10.txt" />
-    <EmbeddedResource Include="Input\Day11.txt" />
-    <EmbeddedResource Include="Input\Day12.txt" />
-    <EmbeddedResource Include="Input\Day13.txt" />
-    <EmbeddedResource Include="Input\Day14.txt" />
-    <EmbeddedResource Include="Input\Day15.txt" />
-    <EmbeddedResource Include="Input\Day16.txt" />
-    <EmbeddedResource Include="Input\Day2.txt" />
-    <EmbeddedResource Include="Input\Day3.txt" />
-    <EmbeddedResource Include="Input\Day4.txt" />
-    <EmbeddedResource Include="Input\Day5.txt" />
-    <EmbeddedResource Include="Input\Day6.txt" />
-    <EmbeddedResource Include="Input\Day7.txt" />
-    <EmbeddedResource Include="Input\Day8.txt" />
-    <EmbeddedResource Include="Input\Day9.txt" />
     <EmbeddedResource Include="Output\Day10Part1.txt" />
     <EmbeddedResource Include="Output\Day10Part2.txt" />
     <EmbeddedResource Include="Output\Day11Part1.txt" />
@@ -113,10 +81,6 @@
     <PackageReference Include="NUnit" Version="3.13.1" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ExpectedOutput\" />
   </ItemGroup>
 
   <ItemGroup>
